@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .main {
+        width: 400px;
+        background-color: rgba(255, 255, 255, 0.616);
+        color: rgb(0, 0, 0);
+        border-radius: 10px;
+        padding: 30px 40px;
+        box-shadow: 0px 0px 10px 10px rgb(200, 198, 198) inset;
+        transition: 0.2s;
+    }
+
+    .main:hover {
+        transform: scale(1.03);
+    }
+
+    h1 {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .inputbox {
+        position: relative;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .inputbox input {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid black;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+    }
+
+    .inputbox input::placeholder {
+        color: rgb(0, 0, 0);
+        opacity: 0.4;
+    }
+
+    .error {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .success {
+        color: green;
+        font-size: 16px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    .sub{
+        width: 80%;
+        padding: 10px;
+        border: 2px solid black;
+        border-radius: 50px;
+        font-size: 16px;
+        outline: none;
+        margin-left: 30px;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="main">
+        <form action="" onsubmit="return false;">
+            <h1>Register</h1>
+
+            <div class="inputbox">
+                Enter Username:
+                <input type="text" placeholder="Enter Username" id="t1">
+                <div class="error" id="error-uname"></div>
+            </div>
+
+            <div class="inputbox">
+                Enter Password:
+                <input type="password" placeholder="Enter Password" id="t2">
+                <div class="error" id="error-pass"></div>
+            </div>
+
+            <div class="inputbox">
+                Confirm Password:
+                <input type="password" placeholder="Confirm Password" id="t3">
+                <div class="error" id="error-cpass"></div>
+            </div>
+
+            <div class="inputbox">
+                Enter Age:
+                <input type="number" placeholder="Enter Age" id="t4">
+                <div class="error" id="error-age"></div>
+            </div>
+
+            <div class="inputbox">
+                Enter Contact No:
+                <input type="text" placeholder="Enter Contact Number" id="t5">
+                <div class="error" id="error-contact"></div>
+            </div>
+
+            <input class="sub" type="button" value="Register" id="b1" onclick="validation()">
+            <div class="success" id="success-message"></div>
+        </form>
+
+        <script>
+            function validation() {
+                let uname = document.getElementById("t1").value;
+                let pass = document.getElementById("t2").value;
+                let cpass = document.getElementById("t3").value;
+                let age = document.getElementById("t4").value;
+                let contact = document.getElementById("t5").value;
+
+                let errorFlag = false;
+
+                document.getElementById("error-uname").innerHTML = "" 
+                document.getElementById("error-pass").innerHTML = "" 
+                document.getElementById("error-cpass").innerHTML = "" 
+                document.getElementById("error-age").innerHTML = "" 
+                document.getElementById("error-age").innerHTML = "" 
+                document.getElementById("error-contact").innerHTML  = "" 
+                document.getElementById("success-message").innerHTML  = "" 
+ 
+                if (uname.length === 0) {
+                    document.getElementById("error-uname").innerHTML = "Username should not be empty.";
+                    errorFlag = true;
+                }
+
+                if (pass.length === 0) {
+                    document.getElementById("error-pass").innerHTML = "Password should not be empty.";
+                    errorFlag = true;
+                }
+
+                if (cpass.length === 0) {
+                    document.getElementById("error-cpass").innerHTML = "Confirm password should not be empty.";
+                    errorFlag = true;
+                }
+
+                if (pass === uname) {
+                    document.getElementById("error-pass").innerHTML = "Username and password should not be the same.";
+                    errorFlag = true;
+                }
+
+                if (pass !== cpass) {
+                    document.getElementById("error-cpass").innerHTML = "Password and confirm password should be the same.";
+                    errorFlag = true;
+                }
+
+                if (age === "") {
+                    document.getElementById("error-age").innerHTML = "Age should not be empty.";
+                    errorFlag = true;
+                } else if (age < 18 || age > 25) {
+                    document.getElementById("error-age").innerHTML = "Age should be between 18 and 25 years.";
+                    errorFlag = true;
+                }
+
+                if (contact.length === 0) {
+                    document.getElementById("error-contact").innerHTML = "Contact number should not be empty.";
+                    errorFlag = true;
+                } else if (contact.length !== 10) {
+                    document.getElementById("error-contact").innerHTML = "Contact number should be of 10 digits only.";
+                    errorFlag = true;
+                }
+
+                if (!errorFlag) {
+                    document.getElementById("success-message").innerHTML = "Registration successful!";
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html
